@@ -5,6 +5,8 @@ Wappo is a "simple" puzzle game. You need to escape from an enemy, having taken 
   <p>![Original Wappo Game on Siemens](wappo-original-siemens.png)</p>
 </details>
 
+![Screenshot](screenshot.png)
+
 There are very few rules:
 * the player walks 1 square in every turn, enemies - 2.
 * enemies always go straight to the player by the shortest way.
