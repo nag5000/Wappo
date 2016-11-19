@@ -1,0 +1,358 @@
+.wappo-game-field {
+  display: inline-block;
+  position: relative;
+  padding: 50px;
+
+  border: 4px solid gray;
+  border-radius: 4px;
+  background: url(../images/background-with-tree.png);
+}
+
+.wappo-game-cell {
+  display: inline-block;
+  position: relative;
+  background-image: url(../images/cell.png);
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+
+  width: 50px;
+  height: 50px;
+}
+
+.wappo-game-cell:hover {
+  background-position-x: -50px;
+}
+
+.wappo-game-cell:active {
+  background-position-x: -100px;
+}
+
+.wappo-win .wappo-game-cell:hover,
+.wappo-win .wappo-game-cell:active,
+.wappo-lose .wappo-game-cell:hover,
+.wappo-lose .wappo-game-cell:active,
+.wappo-animating .wappo-game-cell:hover,
+.wappo-animating .wappo-game-cell:active {
+  background-position-x: 0;
+}
+
+.wappo-game-cell.wappo-empty-cell {
+  visibility: hidden;
+}
+
+.wappo-is-game-obj-static {
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.wappo-is-game-obj-unit {
+  pointer-events: none;
+}
+
+.wappo-is-game-obj-unit {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin: 9px; /* (50 - 32) \ 2 */
+
+  background-repeat: no-repeat;
+}
+
+.wappo-game-obj-enemy {
+  background-image: url(../images/enemy.png);
+  z-index: 3;
+  transition: transform .3s, opacity .3s;
+}
+
+.wappo-game-obj-enemy.wappo-game-obj-enemy-power-3 {
+  background-image: url(../images/enemy2.png);
+}
+
+.wappo-game-obj-enemy-trapped {
+  transform: rotate(30deg) scale(0.8);
+  opacity: 0.8;
+}
+
+.wappo-game-obj-enemy-trapped.wappo-game-obj-enemy-trapped-turns-2 {
+  opacity: 0.8;
+  transform: rotate(25deg) scale(0.9);
+}
+
+.wappo-game-obj-enemy-trapped.wappo-game-obj-enemy-trapped-turns-1 {
+  opacity: 0.8;
+  transform: rotate(15deg) scale(0.9);
+}
+
+.wappo-game-congrats-hero,
+.wappo-game-obj-hero {
+  background-image: url(../images/hero.png);
+  z-index: 4;
+}
+
+.wappo-game-congrats {
+  margin: auto;
+  height: 90px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  z-index: 100;
+  text-align: center;
+  font-size: 30px;
+  font-family: cursive;
+  color: white;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.wappo-game-congrats-hero {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  margin-bottom: 6px;
+}
+
+.wappo-game-congrats-bonfire {
+  display: inline-block;
+  background-image: url(../images/bonfire.png);
+  animation: wappo-bonfire 0.4s steps(3) infinite;
+  height: 50px;
+  width: 32px;
+}
+
+.wappo-win .wappo-game-congrats {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: .8s;
+}
+
+.wappo-hero-lose-trapped {
+  animation: wappo-hero-lose-trapped 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes wappo-hero-lose-trapped {
+   0% { opacity: 1; transform: rotate(0) scale(1); }
+   100% { opacity: 0.8; transform: rotate(30deg) scale(0.9); }
+}
+
+.wappo-hero-lose {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  left: -5px;
+  top: -5px;
+  background-image: url(../images/heroBeaten.png);
+  animation: wappo-smoke 1s steps(8) infinite, wappo-hero-lose 1s;
+  z-index: 10;
+}
+
+@keyframes wappo-hero-lose {
+   0% { opacity: 0; transform: scale(0); }
+   100% { opacity: 1; transform: scale(1); }
+}
+
+.wappo-win .wappo-game-obj-hero {
+  transform: scale(0);
+  opacity: 0;
+  transition: opacity .8s, transform 3s;
+}
+
+.wappo-win .wappo-game-obj-house {
+  transform: scale(1.1);
+  transition: transform 1s;
+}
+
+.wappo-game-obj-house {
+  background-image: url(../images/house.png);
+  background-size: 45px;
+  background-position-x: 1px;
+  width: 50px;
+  height: 50px;
+  margin: 0px;
+  z-index: 2;
+}
+
+.wappo-game-obj-trap {
+  background-image: url(../images/trap.png);
+  animation: wappo-trap 4s steps(3) infinite;
+  height: 50px;
+  z-index: 2;
+}
+
+@keyframes wappo-smoke {
+   0% { background-position-x: 0px; }
+   100% { background-position-x: -480px; }
+}
+
+@keyframes wappo-trap {
+   0% { background-position-x: 0px; }
+   100% { background-position-x: -150px; }
+}
+
+@keyframes wappo-bonfire {
+   0% { background-position-x: 0px; }
+   100% { background-position-x: -96px; }
+}
+
+@keyframes wappo-walk {
+   0% { background-position-x: 0px; }
+   100% { background-position-x: -96px; }
+}
+
+.wappo-wall {
+  position: absolute;
+}
+
+.wappo-bottom-wall {
+  background-image: url(../images/wall.png);
+  width: 50px;
+  height: 10px;
+  top: 44px;
+  z-index: 10;
+}
+
+.wappo-right-wall {
+  background-image: url(../images/wall.png);
+  width: 50px;
+  height: 10px;
+  right: -26px;
+  top: 19px;
+  z-index: 10;
+  transform: rotate(90deg);
+}
+
+.wappo-decor {
+  position: absolute;
+  background-image: url(../images/decor.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+}
+
+.wappo-decor-1 {
+  background-position-x: 0px;
+}
+
+.wappo-decor-2 {
+  background-position-x: -50px;
+}
+
+.wappo-decor-3 {
+  background-position-x: -100px;
+}
+
+.wappo-decor-4 {
+  background-position-x: -150px;
+}
+
+.wappo-decor-5 {
+  background-position-x: -200px;
+}
+
+.wappo-decor-6 {
+  background-position-x: -250px;
+}
+
+.wappo-walk-direction-left {
+  background-position-y: -32px;
+}
+
+.wappo-walk-direction-right {
+  background-position-y: -64px;
+}
+
+.wappo-walk-direction-top {
+  background-position-y: -96px;
+}
+
+.wappo-walk-direction-bottom {
+  background-position-y: 0;
+}
+
+.wappo-walk-left, .wappo-walk-right, .wappo-walk-top, .wappo-walk-bottom {
+  animation: wappo-walk 0.4s steps(3) infinite;
+}
+
+.wappo-monsters-combining {
+  position: absolute;
+  background-image: url(../images/enemyCombining.png);
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  animation: wappo-monsters-combining 0.4s steps(6);
+  animation-fill-mode: forwards;
+}
+
+@keyframes wappo-monsters-combining {
+   0% { background-position-x: 0px; }
+   100% { background-position-x: -300px; }
+}
+
+.wappo {
+  display: inline-block;
+}
+
+.wappo-controls {
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.wappo-controls button {
+  margin: 0;
+  padding: 0 8px;
+
+  font-family: cursive;
+  font-size: 20px;
+  font-weight: bold;
+
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+.wappo-controls button[disabled] {
+  cursor: not-allowed;
+  color: #b3b3b3;
+}
+
+.wappo-controls button[disabled]:hover {
+  background-color: #e1e6f5;
+  color: #b3b3b3;
+}
+
+.wappo-controls button:hover {
+  background-color: #94abec;
+  color: white;
+}
+
+.wappo-controls button:active {
+  background-color: #5d7ace;
+}
+
+.wappo-game-title {
+  float: right;
+  font-weight: bold;
+}
+
+.wappo-game-level-title {
+  display: inline-block;
+}
+
+.wappo-game-prev-level,
+.wappo-game-next-level {
+}
+
+.wappo-game-restart-level {
+}
