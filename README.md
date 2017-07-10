@@ -11,4 +11,4 @@ There are very few rules:
 * enemies always go straight to the player by the shortest way.
 * enemies are always trying to make a horizontal step first, if not possible, they will make a vertical step.
 
-Play on [http://nagits.github.io/Wappo](http://nagits.github.io/Wappo).
+Play on [http://nag5000.github.io/Wappo](http://nag5000.github.io/Wappo).
