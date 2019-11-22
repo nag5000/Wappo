@@ -12,6 +12,7 @@
         }
       }
     };
+
     var gameWindow = new Wappo.GameWindow(container, options);
 
     document.onkeyup = function(e) {
@@ -47,6 +48,8 @@
         gameWindow.turnAction(cell);
       }
     };
+
+    return gameWindow;
   };
 
   function loadLevelNumber() {

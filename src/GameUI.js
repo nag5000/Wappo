@@ -280,6 +280,11 @@
       this.gameField.appendChild(row);
       for (var j = 0; j < cells[i].length; j++) {
         var cell = cells[i][j];
+        if (cell) {
+          cell.rowIndex = i;
+          cell.colIndex = j;
+        }
+
         this._drawCell.call(this, cell, row);
       }
     }

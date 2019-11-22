@@ -212,35 +212,37 @@
       // Если герой ниже монстра, то монстр попытается спуститься.
       if (this.hero.CurrentPosition.Row > monster.CurrentPosition.Row) {
         // Если на пути у него стенка, то он останется на месте.
-        if (cells[monster.CurrentPosition.Row + 1][monster.CurrentPosition.Col].TopWall) {
+        if (cells[monster.CurrentPosition.rowIndex + 1][monster.CurrentPosition.colIndex].TopWall) {
           return monster.CurrentPosition;
         }
 
-        return cells[monster.CurrentPosition.Row + 1][monster.CurrentPosition.Col];
+        return cells[monster.CurrentPosition.rowIndex + 1][monster.CurrentPosition.colIndex];
       } else {
         // Если на пути у него стенка, то он останется на месте.
-        if (cells[monster.CurrentPosition.Row - 1][monster.CurrentPosition.Col].BottomWall) {
+        if (cells[monster.CurrentPosition.rowIndex - 1][monster.CurrentPosition.colIndex].BottomWall) {
           return monster.CurrentPosition;
         }
 
-        return cells[monster.CurrentPosition.Row - 1][monster.CurrentPosition.Col];
+        return cells[monster.CurrentPosition.rowIndex - 1][monster.CurrentPosition.colIndex];
       }
     };
 
     var changeCol = function() {
-      // Если герой правее монстра, то монстр попытается пройти в право.
+      // Если герой правее монстра, то монстр попытается пройти направо.
       if (this.hero.CurrentPosition.Col > monster.CurrentPosition.Col) {
         // Если на пути у него стенка, то он останется на месте.
-        if (cells[monster.CurrentPosition.Row][monster.CurrentPosition.Col + 1].LeftWall)
+        if (cells[monster.CurrentPosition.rowIndex][monster.CurrentPosition.colIndex + 1].LeftWall) {
           return monster.CurrentPosition;
+        }
 
-        return cells[monster.CurrentPosition.Row][monster.CurrentPosition.Col + 1];
+        return cells[monster.CurrentPosition.rowIndex][monster.CurrentPosition.colIndex + 1];
       } else {
         // Если на пути у него стенка, то он останется на месте.
-        if (cells[monster.CurrentPosition.Row][monster.CurrentPosition.Col - 1].RightWall)
+        if (cells[monster.CurrentPosition.rowIndex][monster.CurrentPosition.colIndex - 1].RightWall) {
           return monster.CurrentPosition;
+        }
 
-        return cells[monster.CurrentPosition.Row][monster.CurrentPosition.Col - 1];
+        return cells[monster.CurrentPosition.rowIndex][monster.CurrentPosition.colIndex - 1];
       }
     };
 
@@ -249,7 +251,7 @@
       return changeRow.call(this);
     }
 
-    // Если монстр и герой не в одном столбце, то он постарается сначала приблизится к герою по горизонтали.
+    // Если монстр и герой не в одном столбце, то он постарается сначала приблизиться к герою по горизонтали.
     var newCell = changeCol.call(this);
     if (newCell != monster.CurrentPosition) {
       return newCell;
