@@ -357,3 +357,8 @@
 
 .wappo-game-restart-level {
 }
+
+.wappo-game-level-emoji-code {
+  padding: 0 8px;
+  cursor: help;
+}

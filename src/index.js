@@ -49,6 +49,50 @@
       }
     };
 
+    document.addEventListener('keypress', function(e) {
+      if (e.ctrlKey && e.code === "KeyG") {
+        var levelNumber = prompt(
+          'Restore game progress / Load locked level.\nEnter level number:',
+          gameWindow.currentLevel.Number + 1
+        );
+
+        if (levelNumber == null) {
+          return;
+        }
+
+        levelNumber = Number(levelNumber) - 1;
+        if (!Number.isInteger(levelNumber)
+            || levelNumber < 0
+            || levelNumber >= gameWindow.levels.length) {
+          alert('Incorrect level number.');
+          return;
+        }
+
+        var level = gameWindow.levels[levelNumber];
+        if (!level) {
+          alert('Incorrect level number.');
+          return;
+        }
+
+        var emojiCode = prompt(
+          'Enter the emoji code for level ' + (levelNumber + 1) + ':',
+          '🔶🔶🔶'
+        );
+
+        if (emojiCode == null) {
+          return;
+        }
+
+        if (emojiCode !== gameWindow.getLevelEmojiCode(level, levelNumber)) {
+          alert('Incorrect emoji code for level ' + (levelNumber + 1));
+          return;
+        }
+
+        saveLevelNumber(levelNumber)
+        gameWindow.LoadLevel(levelNumber);
+      }
+    });
+
     return gameWindow;
   };
 
