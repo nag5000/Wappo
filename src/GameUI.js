@@ -78,7 +78,7 @@
   };
 
   proto.animateMonstersCombining = function(monster) {
-    if (monster.deleted) {
+    if (monster.deleted && monster.element.isConnected) {
       var el = document.createElement('div');
       el.className = 'wappo-monsters-combining';
       var cellElement = monster.CurrentPosition.element;

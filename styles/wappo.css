@@ -237,6 +237,8 @@
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;
+  top: 0;
+  left: 0;
 }
 
 .wappo-decor-1 {
@@ -289,6 +291,8 @@
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;
+  top: 0;
+  left: 0;
   z-index: 10;
   animation: wappo-monsters-combining 0.4s steps(6);
   animation-fill-mode: forwards;
